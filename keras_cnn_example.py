@@ -12,7 +12,7 @@ from keras.datasets import mnist
 np.random.seed(123)                 # 랜덤시드를 지정하면, 재실행시에도 같은 랜덤값을 추출합니다(reproducibility)
 # Load pre-shuffled MNIST data into train and test sets
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
-print(X_train.shape)
+print("type(X_train) : ", type(X_train))
 print(X_test.shape)
 print(y_train.shape)
 print(y_test.shape)
@@ -25,14 +25,20 @@ print("X_train.shape"); print(X_train.shape)
 X_test = X_test.reshape(X_test.shape[0], 28, 28, 1)
 print("X_test.shape"); print(X_test.shape)
 
+print("type(X_train) : ", type(X_train))
 X_train = X_train.astype('float32')
+print("type(X_train) : ", type(X_train))
 X_test = X_test.astype('float32')
 X_train /= 255
 X_test /= 255
 
-print("y_train[:10]");  print(y_train[:10])
+print("y_train[:10] : "); print(y_train[:10])
+print("type(y_train) : ");  print(type(y_train))
+print("y_train.shape", y_train.shape)
 Y_train = np_utils.to_categorical(y_train, 10)
+print("type(Y_train) : ", type(Y_train))
 print("Y_train.shape"); print(Y_train.shape)
+exit()
 Y_test = np_utils.to_categorical(y_test, 10)
 print("Y_test.shape"); print(Y_test.shape)
 
@@ -60,5 +66,5 @@ model.compile(loss='categorical_crossentropy',
 print("model.input_shape");     print(model.input_shape)
 print("model.output_shape");    print(model.output_shape)
 
-model.fit(X_train, Y_train, batch_size=1000, epochs=10, verbose=1)
+model.fit(X_train, Y_train, batch_size=2000, epochs=10, verbose=1)
 print("Finished");
